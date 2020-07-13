@@ -1,0 +1,21 @@
+.main{
+	display:flex;
+	justify-content: center;
+	
+}
+/* 테이블 스타일  */
+.form{
+	width : 50%;
+	border : 1px solid #e2e2e2;
+	display : flex;
+	justify-content:center;
+	align-items:center;
+	margin-top : 100px;
+	padding : 10px;
+}
+
+.loginTable{
+	display : flex;
+	justify-content:center;
+	align-items:center;
+}
