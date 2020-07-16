@@ -8,7 +8,7 @@
 <body>
 
 <div class="main">
-	<form action="LoginProc.do" method="post" class="form">
+	<form action="LoginProc.jsp" method="post" class="form">
 		<table class="loginTable">
 			<tr class="loginTable__tr">
 				<td class="loginTable__td1">¾ÆÀÌµð</td>

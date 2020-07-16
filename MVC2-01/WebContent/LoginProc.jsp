@@ -4,6 +4,8 @@
 <html>
 
 <body>
-	넘어온 데이터는 ${id } 와${password}
+	넘어온 데이터는 ${param.id } 와${param.password}
+	
+	
 </body>
 </html>
