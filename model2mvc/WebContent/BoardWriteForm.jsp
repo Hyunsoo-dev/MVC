@@ -35,7 +35,7 @@
 			<td align = "center" colspan = "2">
 				<input type = "submit" value = "글쓰기"> &nbsp;&nbsp;
 				<input type = "reset" value = "다시 작성"> &nbsp;&nbsp;
-				<button onclick = "location.href = 'BoardListCon.do'">전체 게시글 보기</button>
+				<button onclick = "location.href ='BoardListCon.do'">전체 게시글 보기</button>
 			</td>
 		</tr>	
 	</table>	

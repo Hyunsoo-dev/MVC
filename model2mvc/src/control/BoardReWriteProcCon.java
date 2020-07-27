@@ -13,18 +13,18 @@ import model.BoardBean;
 import model.BoardDAO;
 
 
-@WebServlet("BoardReWriteProcCon.do")
+@WebServlet("/BoardReWriteProcCon.do")
 public class BoardReWriteProcCon extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqPro(request, response);
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		reqPro(request, response);
+		reqPro(request,response);
 	}
 	protected void reqPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("euc-kr");
 		
 		BoardBean dbean = new BoardBean();

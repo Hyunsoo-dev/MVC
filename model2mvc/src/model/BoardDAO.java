@@ -18,10 +18,11 @@ public class BoardDAO {
 	public void getCon() {
 		
 		try {
+			
 			Context initctx = new InitialContext();
 			Context envctx = (Context)initctx.lookup("java:comp/env");
 			
-			DataSource ds = (DataSource) envctx.lookup("jdbc/pool");
+			DataSource ds = (DataSource)envctx.lookup("jdbc/pool");
 			con = ds.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -193,4 +194,79 @@ public class BoardDAO {
 		}
 		
 	}
+	
+	//조회수 증가 없이 한 개의 게시글을 가져오는 메소드
+		public BoardBean updateGetOneBoard(int num) {
+			getCon();
+			BoardBean dbean = null;
+			try {
+				
+				String sql = "select * from board where num = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					 dbean = new BoardBean();
+					dbean.setNum(rs.getInt(1));
+					dbean.setWriter(rs.getString(2));
+					dbean.setEmail(rs.getString(3));
+					dbean.setSubject(rs.getString(4));
+					dbean.setPassword(rs.getNString(5));
+					dbean.setReg_date(rs.getString(6).toString());
+					dbean.setRef(rs.getInt(7));
+					dbean.setRe_step(rs.getInt(8));
+					dbean.setRe_level(rs.getInt(9));
+					dbean.setReadcount(rs.getInt(10));
+					dbean.setContent(rs.getString(11));
+
+					
+				}
+				con.close();
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return dbean;
+		}
+		
+		public void updateBoard(String subject , String content, int num) {
+			
+			getCon();
+			
+			try {
+				
+				String sql = "update board set subject=? , content=? where num=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, subject);
+				pstmt.setString(2, content);
+				pstmt.setInt(3, num);
+				pstmt.executeUpdate();
+				
+				con.close();
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		public void deleteBoard(int num) {
+			getCon();
+			
+			try {
+				
+				String sql = "delete from board where num = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.executeUpdate();
+				
+				
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		};
 }

@@ -25,6 +25,7 @@ public class BoardListCon extends HttpServlet {
 		reqPro(request,response);
 	}
 	
+	
 	protected void reqPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//화면에 보여질 게시글의 개수 설정
@@ -49,6 +50,10 @@ public class BoardListCon extends HttpServlet {
 		BoardDAO ddao = new BoardDAO();
 		count = ddao.getAllCount();
 		
+		//수정 시 비밀번호 확인 여부 msg 받아옴
+		String msg = (String)request.getAttribute("msg");
+		
+		
 		
 		//현재 보여질 페이지 시작번호를 설정 
 		int startRow = (currentPage - 1)*pageSize + 1; 
@@ -64,6 +69,7 @@ public class BoardListCon extends HttpServlet {
 		request.setAttribute("count" , count);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("number" , number);
+		request.setAttribute("msg", msg);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("BoardList.jsp");
 		dis.forward(request, response);

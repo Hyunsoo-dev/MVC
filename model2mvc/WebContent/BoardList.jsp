@@ -5,6 +5,13 @@
 <!DOCTYPE html>
 <html>
 <body>
+
+<c:if test="${msg != null}">
+<script	>
+alert("${msg}");
+</script>
+</c:if>
+<form action="#" method ="post">
 <table>
 	<tr>
 		<td colspan="5">
@@ -76,7 +83,7 @@
 		<a href="BoardList.jsp?pageNum=${startPage + 10 }">[¥Ÿ¿Ω]</a>
 	</c:if>
 </c:if>
-
+</form>
 
 </body>
 </html>

@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import model.BoardBean;
 import model.BoardDAO;
 
-@WebServlet("/BoardWriteProc.do")
-public class BoardWriteProc extends HttpServlet {
-	
+@WebServlet("/BoardDeleteCon.do")
+public class BoardDeleteCon extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqPro(request,response);
 	}
@@ -23,24 +23,17 @@ public class BoardWriteProc extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		reqPro(request,response);
 	}
-
 	
 	protected void reqPro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("euc-kr");
 		
-		BoardBean dbean = new BoardBean();
-		dbean.setWriter(request.getParameter("writer"));
-		dbean.setEmail(request.getParameter("email"));
-		dbean.setSubject(request.getParameter("subject"));
-		dbean.setPassword(request.getParameter("password"));
-		dbean.setContent(request.getParameter("content"));
+		int num = Integer.parseInt(request.getParameter("num"));
 		
 		BoardDAO ddao = new BoardDAO();
-		ddao.insertBoard(dbean);
+		BoardBean dbean = ddao.updateGetOneBoard(num);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("BoardList.jsp");
+		request.setAttribute("dbean", dbean);
+		RequestDispatcher dis = request.getRequestDispatcher("BoardDeleteForm.jsp");
 		dis.forward(request, response);
 	}
-
 }
